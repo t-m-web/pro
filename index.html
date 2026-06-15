@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURA Store — Premium Audio & Wearables</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       NAVBAR
+       ══════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-icon">◎</span>
+        <span class="logo-text">AURA<span class="logo-store">Store</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#products">Products</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="btn btn-nav" onclick="startOrder()">Buy Now</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════
+       HERO — updates dynamically per selected product
+       ══════════════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-bg-glow"></div>
+    <div class="hero-container">
+
+      <!-- Text side -->
+      <div class="hero-text">
+        <span class="hero-badge">✦ Premium Audio Collection 2025</span>
+        <h1 class="hero-title" id="hero-title">AURA Pro Headphones</h1>
+        <p class="hero-tagline" id="hero-tagline">Studio-grade ANC. 50-hour battery. Zero compromises.</p>
+        <div class="hero-price-row">
+          <span class="price-current" id="hero-price-current">৳ 12,500</span>
+          <div class="hero-rating-wrap">
+            <span class="hero-rating" id="hero-rating">★ 4.9</span>
+            <span class="hero-review-count" id="hero-reviews">2,847 reviews</span>
+          </div>
+        </div>
+        <div class="hero-cta-row">
+          <button class="btn btn-primary" onclick="startOrder()">Buy Now</button>
+          <a href="#products" class="btn btn-ghost">See All Products ↓</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><span class="trust-icon">✓</span> Free Delivery</div>
+          <div class="trust-item"><span class="trust-icon">✓</span> 7-Day Return</div>
+          <div class="trust-item"><span class="trust-icon">✓</span> 1-Year Warranty</div>
+        </div>
+      </div>
+
+      <!-- Visual side -->
+      <div class="hero-visual">
+        <div class="product-card" id="productCard">
+          <div class="product-glow"></div>
+          <div class="product-image-main">
+            <img id="mainImage"
+              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80"
+              alt="Product" />
+          </div>
+          <div class="product-thumbnails" id="productThumbs">
+            <button class="thumb active" onclick="switchImage(this,'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80')">
+              <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=150&q=60" alt="1" />
+            </button>
+            <button class="thumb" onclick="switchImage(this,'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=700&q=80')">
+              <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=150&q=60" alt="2" />
+            </button>
+            <button class="thumb" onclick="switchImage(this,'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=700&q=80')">
+              <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=150&q=60" alt="3" />
+            </button>
+          </div>
+        </div>
+        <div class="floating-badge fb1">🔊 40dB ANC</div>
+        <div class="floating-badge fb2">🎵 Hi-Res Audio</div>
+        <div class="floating-badge fb3">⚡ 50hr Battery</div>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">50K+</span><span class="stat-label">Happy Customers</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">4.9★</span><span class="stat-label">Average Rating</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">4</span><span class="stat-label">Premium Products</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-num">1yr</span><span class="stat-label">Warranty</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       PRODUCT GRID
+       ══════════════════════════════════════════════ -->
+  <section class="products-section" id="products">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-eyebrow">Our Collection</span>
+        <h2 class="section-title">Choose Your <em>Perfect</em> Device</h2>
+        <p class="section-subtitle">Click any product to preview it — see full details, specs, and images update instantly.</p>
+      </div>
+      <div class="product-grid" id="productGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FEATURES — updated per product
+       ══════════════════════════════════════════════ -->
+  <section class="features" id="features">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-eyebrow">Why Choose It</span>
+        <h2 class="section-title">Built for <em>Uncompromised</em> Performance</h2>
+      </div>
+      <div class="features-grid" id="featuresGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       PRODUCT DETAILS — updated per product
+       ══════════════════════════════════════════════ -->
+  <section class="details" id="details">
+    <div class="section-container">
+      <div class="details-layout">
+        <div class="details-images">
+          <div class="detail-img-big">
+            <img id="detailImgBig"
+              src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=700&q=80" alt="Detail" />
+          </div>
+          <div class="detail-img-small">
+            <img id="detailImgSmall"
+              src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400&q=80" alt="Detail 2" />
+          </div>
+        </div>
+        <div class="details-content">
+          <span class="section-eyebrow">Product Details</span>
+          <h2 class="section-title" id="detailProductName">AURA Pro Headphones</h2>
+          <p id="detailDesc">AURA Pro delivers studio-grade sound with 40dB Active Noise Cancellation.</p>
+          <div class="specs-grid" id="specsGrid"><!-- JS --></div>
+          <button class="btn btn-primary" onclick="startOrder()">
+            Order Now — <span id="detailPrice">৳ 12,500</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       REVIEWS
+       ══════════════════════════════════════════════ -->
+  <section class="reviews" id="reviews">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-eyebrow">Customer Reviews</span>
+        <h2 class="section-title">50,000+ People <em>Can't Be Wrong</em></h2>
+        <div class="overall-rating">
+          <div class="stars-big">★★★★★</div>
+          <span class="rating-num">4.9</span>
+          <span class="rating-count">from 5,691 reviews</span>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card" data-scroll>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I've tried Sony, Bose, Apple — nothing comes close to AURA Pro for the price. The ANC is genuinely eerie. I forgot I was in a coffee shop."</p>
+          <div class="reviewer"><div class="reviewer-avatar" style="background:#5C4BFF;">R</div><div><div class="reviewer-name">Rahim Chowdhury</div><div class="reviewer-loc">Dhaka</div></div></div>
+        </div>
+        <div class="review-card featured" data-scroll>
+          <div class="review-badge">Top Review</div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"The AURA Buds Pro stay in my ears during 10K runs. Sound is amazing, ANC is real, and 8 hours on a single charge? Perfect."</p>
+          <div class="reviewer"><div class="reviewer-avatar" style="background:#F0B429;color:#0D1B2A;">N</div><div><div class="reviewer-name">Nusrat Jahan</div><div class="reviewer-loc">Chittagong</div></div></div>
+        </div>
+        <div class="review-card" data-scroll>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"The AURA Bass Speaker survived a beach trip and a rain shower. Sound is enormous for its size. My whole family loves it."</p>
+          <div class="reviewer"><div class="reviewer-avatar" style="background:#22D3A5;color:#0D1B2A;">K</div><div><div class="reviewer-name">Kamal Hossain</div><div class="reviewer-loc">Sylhet</div></div></div>
+        </div>
+        <div class="review-card" data-scroll>
+          <div class="review-stars">★★★★☆</div>
+          <p class="review-text">"The Smart Watch health tracking is incredibly accurate. My doctor was impressed with the SpO2 readings. Battery genuinely lasts a full week."</p>
+          <div class="reviewer"><div class="reviewer-avatar" style="background:#FF6B6B;">F</div><div><div class="reviewer-name">Fatema Begum</div><div class="reviewer-loc">Rajshahi</div></div></div>
+        </div>
+        <div class="review-card" data-scroll>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Delivery was faster than expected. The packaging was premium. And the headphones themselves blew my expectations away."</p>
+          <div class="reviewer"><div class="reviewer-avatar" style="background:#A78BFA;">S</div><div><div class="reviewer-name">Shakib Rahman</div><div class="reviewer-loc">Khulna</div></div></div>
+        </div>
+        <div class="review-card" data-scroll>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Ordered the buds on Tuesday, arrived Thursday. Sound quality is miles ahead of anything else at this price. Will buy again as gifts."</p>
+          <div class="reviewer"><div class="reviewer-avatar" style="background:#34D399;color:#0D1B2A;">T</div><div><div class="reviewer-name">Tasnim Ahmed</div><div class="reviewer-loc">Mymensingh</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FAQ
+       ══════════════════════════════════════════════ -->
+  <section class="faq" id="faq">
+    <div class="section-container faq-inner">
+      <div class="section-header">
+        <span class="section-eyebrow">FAQ</span>
+        <h2 class="section-title">Common Questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">How does the ordering process work?<span class="faq-icon">+</span></button><div class="faq-a"><p>Select a product → pick your color & quantity → fill in your name, phone and address → go to the payment page → send the exact amount via bKash/Nagad/Bank → paste your Transaction ID → confirm. Our team gets notified instantly.</p></div></div>
+        <div class="faq-item"><button class="faq-q">What payment methods are accepted?<span class="faq-icon">+</span></button><div class="faq-a"><p>We accept bKash, Nagad, and direct Bank Transfer. All account numbers are shown on the payment page with a one-tap copy button. After sending, just paste your TrxID to confirm.</p></div></div>
+        <div class="faq-item"><button class="faq-q">How long does delivery take?<span class="faq-icon">+</span></button><div class="faq-a"><p>Dhaka metro: 1–2 business days. Outside Dhaka: 3–5 business days by courier. You'll receive tracking info via SMS after dispatch.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Can I order multiple different products?<span class="faq-icon">+</span></button><div class="faq-a"><p>Currently each order covers one product type. To order multiple products, simply place separate orders. Contact us and we can combine delivery to save on shipping.</p></div></div>
+        <div class="faq-item"><button class="faq-q">What's the return and warranty policy?<span class="faq-icon">+</span></button><div class="faq-a"><p>7-day return for unopened items. All products carry a 12-month manufacturer's warranty covering hardware defects. Defective units are replaced free of charge.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Are these products genuine?<span class="faq-icon">+</span></button><div class="faq-a"><p>100%. All AURA products are manufactured and quality-tested by us. Every unit ships with a warranty card, authenticity seal, and our customer support line.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CONTACT
+       ══════════════════════════════════════════════ -->
+  <section class="contact" id="contact">
+    <div class="section-container contact-inner">
+      <div class="contact-info">
+        <span class="section-eyebrow">Get in Touch</span>
+        <h2 class="section-title">We're Here to Help</h2>
+        <p>Got a question before you buy? Our team responds within 2 hours during business hours.</p>
+        <div class="contact-methods">
+          <div class="contact-method"><div class="cm-icon">📞</div><div><div class="cm-label">Phone / WhatsApp</div><div class="cm-value">+880 1700-000000</div></div></div>
+          <div class="contact-method"><div class="cm-icon">📧</div><div><div class="cm-label">Email</div><div class="cm-value">hello@aurastore.com</div></div></div>
+          <div class="contact-method"><div class="cm-icon">🕐</div><div><div class="cm-label">Business Hours</div><div class="cm-value">Sat–Thu, 9AM–8PM</div></div></div>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <form class="contact-form" onsubmit="submitContact(event)">
+          <div class="form-group"><label>Your Name</label><input type="text" placeholder="Rahim Chowdhury" required /></div>
+          <div class="form-group"><label>Phone / Email</label><input type="text" placeholder="+880 17..." required /></div>
+          <div class="form-group"><label>Message</label><textarea rows="4" placeholder="Ask us anything..." required></textarea></div>
+          <button type="submit" class="btn btn-primary w100">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <a href="#" class="logo"><span class="logo-icon">◎</span><span class="logo-text">AURA<span class="logo-store">Store</span></span></a>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" class="social-link" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a>
+          <a href="#" class="social-link" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="#060e18" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-links-row">
+        <a href="#products">Products</a><a href="#features">Features</a><a href="#details">Specs</a><a href="#reviews">Reviews</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+      </div>
+      <div class="footer-bottom"><p>© 2025 AURA Store. All rights reserved. Made with ♥ in Bangladesh.</p></div>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════════════════════════════
+       STEP 1 — PRODUCT SELECTION MODAL
+       ════════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="step1Overlay" onclick="closeIfOverlay(event,'step1Overlay')">
+    <div class="modal" id="step1Modal">
+      <button class="modal-close" onclick="closeModal('step1Overlay')">✕</button>
+
+      <div class="progress-bar">
+        <div class="prog-step active"><span class="prog-num">1</span><span class="prog-label">Product</span></div>
+        <div class="prog-line"></div>
+        <div class="prog-step"><span class="prog-num">2</span><span class="prog-label">Your Info</span></div>
+        <div class="prog-line"></div>
+        <div class="prog-step"><span class="prog-num">3</span><span class="prog-label">Payment</span></div>
+      </div>
+
+      <h2 class="modal-title">Customize Your Order</h2>
+
+      <div class="modal-body-2col">
+        <!-- Product preview -->
+        <div class="modal-col">
+          <div class="order-product-img">
+            <img id="s1-product-img" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=70" alt="Product" />
+          </div>
+          <div class="order-product-name" id="s1-product-name">AURA Pro Headphones</div>
+          <div class="order-unit-price" id="s1-unit-price">৳ 12,500 per unit</div>
+        </div>
+
+        <!-- Options -->
+        <div class="modal-col">
+          <div class="form-group">
+            <label>Select Color</label>
+            <div class="color-options" id="colorOptions"><!-- JS --></div>
+          </div>
+
+          <div class="form-group">
+            <label>Quantity</label>
+            <div class="qty-control">
+              <button class="qty-btn" onclick="changeQty(-1)">−</button>
+              <span class="qty-num" id="qtyDisplay">1</span>
+              <button class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+          </div>
+
+          <div class="mini-summary">
+            <div class="mini-sum-row"><span>Color</span><span id="ms-color">—</span></div>
+            <div class="mini-sum-row"><span>Qty</span><span id="ms-qty">1</span></div>
+            <div class="mini-sum-divider"></div>
+            <div class="mini-sum-row total-row"><span>Total</span><span id="ms-total">৳ 12,500</span></div>
+          </div>
+
+          <button class="btn btn-primary w100" onclick="goToStep2()">Continue — Enter Your Info →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       STEP 2 — CUSTOMER INFO MODAL
+       ════════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="step2Overlay" onclick="closeIfOverlay(event,'step2Overlay')">
+    <div class="modal modal-narrow" id="step2Modal">
+      <button class="modal-close" onclick="closeModal('step2Overlay')">✕</button>
+
+      <div class="progress-bar">
+        <div class="prog-step done"><span class="prog-num">✓</span><span class="prog-label">Product</span></div>
+        <div class="prog-line active-line"></div>
+        <div class="prog-step active"><span class="prog-num">2</span><span class="prog-label">Your Info</span></div>
+        <div class="prog-line"></div>
+        <div class="prog-step"><span class="prog-num">3</span><span class="prog-label">Payment</span></div>
+      </div>
+
+      <h2 class="modal-title">Delivery Information</h2>
+      <p class="modal-subtitle">We'll use this to deliver your order and confirm with you by phone.</p>
+
+      <div class="order-recap-chip">
+        <span>🛍️</span>
+        <span id="recap-product-name" class="recap-product">AURA Pro</span>
+        <span id="recap-color-badge" class="recap-badge">Midnight Black</span>
+        <span id="recap-qty-badge" class="recap-badge">× 1</span>
+        <span id="recap-total-badge" class="recap-total">৳ 12,500</span>
+      </div>
+
+      <form onsubmit="submitStep2(event)">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Full Name <span class="req">*</span></label>
+            <input type="text" id="ci-name" placeholder="Your full name" required />
+          </div>
+          <div class="form-group">
+            <label>Phone Number <span class="req">*</span></label>
+            <input type="tel" id="ci-phone" placeholder="01XXXXXXXXX" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Delivery Address <span class="req">*</span></label>
+          <textarea id="ci-address" rows="3" placeholder="House no., Road, Area, Upazila, District" required></textarea>
+        </div>
+        <div id="step2Error" class="form-error" style="display:none;"></div>
+        <div class="modal-btn-row">
+          <button type="button" class="btn btn-ghost" onclick="backToStep1()">← Back</button>
+          <button type="submit" class="btn btn-primary" style="flex:1;">Go to Payment →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       STEP 3 — PAYMENT PAGE MODAL
+       ════════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="step3Overlay" onclick="closeIfOverlay(event,'step3Overlay')">
+    <div class="modal modal-payment" id="step3Modal">
+      <button class="modal-close" onclick="closeModal('step3Overlay')">✕</button>
+
+      <div class="progress-bar">
+        <div class="prog-step done"><span class="prog-num">✓</span><span class="prog-label">Product</span></div>
+        <div class="prog-line active-line"></div>
+        <div class="prog-step done"><span class="prog-num">✓</span><span class="prog-label">Your Info</span></div>
+        <div class="prog-line active-line"></div>
+        <div class="prog-step active"><span class="prog-num">3</span><span class="prog-label">Payment</span></div>
+      </div>
+
+      <h2 class="modal-title">Complete Your Payment</h2>
+
+      <!-- Big amount highlight -->
+      <div class="pay-amount-box">
+        <div class="pay-amount-label">Total Amount to Send</div>
+        <div class="pay-amount-value" id="payAmountDisplay">৳ 12,500</div>
+        <div class="pay-amount-sub">Send this exact amount, then paste your Transaction ID below</div>
+      </div>
+
+      <!-- Method tabs -->
+      <div class="pm-tabs">
+        <button class="pm-tab active" onclick="selectPayTab(this,'bkash')">bKash</button>
+        <button class="pm-tab" onclick="selectPayTab(this,'nagad')">Nagad</button>
+        <button class="pm-tab" onclick="selectPayTab(this,'bank')">Bank Transfer</button>
+      </div>
+
+      <!-- bKash panel -->
+      <div class="pm-panel active" id="panel-bkash">
+        <div class="pm-card bkash-card">
+          <div class="pm-card-header">
+            <div class="pm-brand bkash-brand">bKash</div>
+            <span class="pm-card-type">Mobile Banking — Send Money</span>
+          </div>
+          <div class="pm-number-block">
+            <span class="pm-number-label">Send to this number</span>
+            <div class="pm-number-row">
+              <span class="pm-number">01712-345678</span>
+              <button class="copy-btn" onclick="copyNum('01712-345678',this)">📋 Copy Number</button>
+            </div>
+          </div>
+          <div class="pm-steps-mini">
+            <div class="pm-step-mini"><span class="pm-step-n">1</span> Open bKash app → tap <strong>Send Money</strong></div>
+            <div class="pm-step-mini"><span class="pm-step-n">2</span> Enter number above → Amount: <strong class="bk-amt">৳ 12,500</strong> → Reference: <strong>AURA</strong></div>
+            <div class="pm-step-mini"><span class="pm-step-n">3</span> Enter your bKash PIN and confirm</div>
+            <div class="pm-step-mini"><span class="pm-step-n">4</span> Copy the <strong>TrxID</strong> from the confirmation SMS</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nagad panel -->
+      <div class="pm-panel" id="panel-nagad">
+        <div class="pm-card nagad-card">
+          <div class="pm-card-header">
+            <div class="pm-brand nagad-brand">Nagad</div>
+            <span class="pm-card-type">Mobile Banking — Send Money</span>
+          </div>
+          <div class="pm-number-block">
+            <span class="pm-number-label">Send to this number</span>
+            <div class="pm-number-row">
+              <span class="pm-number">01812-345678</span>
+              <button class="copy-btn" onclick="copyNum('01812-345678',this)">📋 Copy Number</button>
+            </div>
+          </div>
+          <div class="pm-steps-mini">
+            <div class="pm-step-mini"><span class="pm-step-n">1</span> Open Nagad app → tap <strong>Send Money</strong></div>
+            <div class="pm-step-mini"><span class="pm-step-n">2</span> Enter number above → Amount: <strong class="ng-amt">৳ 12,500</strong> → Reference: <strong>AURA</strong></div>
+            <div class="pm-step-mini"><span class="pm-step-n">3</span> Enter your Nagad PIN and confirm</div>
+            <div class="pm-step-mini"><span class="pm-step-n">4</span> Copy the <strong>TrxID</strong> from the confirmation SMS</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bank panel -->
+      <div class="pm-panel" id="panel-bank">
+        <div class="pm-card bank-card">
+          <div class="pm-card-header">
+            <div class="pm-brand bank-brand">Bank</div>
+            <span class="pm-card-type">Direct Bank Transfer (BEFTN / RTGS)</span>
+          </div>
+          <div class="bank-details-grid">
+            <div class="bank-detail-row"><span>Bank Name</span><span>Dutch-Bangla Bank Ltd.</span></div>
+            <div class="bank-detail-row"><span>Account Name</span><span>AURA Store Ltd.</span></div>
+            <div class="bank-detail-row">
+              <span>Account No.</span>
+              <span class="bank-num-row">1234567890123 <button class="copy-btn" onclick="copyNum('1234567890123',this)">📋 Copy</button></span>
+            </div>
+            <div class="bank-detail-row"><span>Routing No.</span><span>090261234</span></div>
+            <div class="bank-detail-row"><span>Branch</span><span>Motijheel, Dhaka</span></div>
+          </div>
+          <div class="pm-steps-mini" style="margin-top:.9rem;">
+            <div class="pm-step-mini"><span class="pm-step-n">1</span> Transfer exactly <strong class="bk-bank-amt">৳ 12,500</strong> to the account above</div>
+            <div class="pm-step-mini"><span class="pm-step-n">2</span> Save your <strong>Transaction / Reference number</strong> from the receipt</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Transaction ID section ─── -->
+      <div class="txn-section">
+        <div class="txn-divider"><span>I've sent the payment — now confirm my order</span></div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Payment Method Used <span class="req">*</span></label>
+            <select id="pay-method-select">
+              <option value="">-- Select method --</option>
+              <option value="bKash">bKash</option>
+              <option value="Nagad">Nagad</option>
+              <option value="Bank Transfer">Bank Transfer</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Transaction ID / TrxID <span class="req">*</span></label>
+            <input type="text" id="txn-id-input" placeholder="e.g. 8FK3R9X2PQ" />
+            <span class="field-hint">From your bKash/Nagad SMS or bank receipt</span>
+          </div>
+        </div>
+
+        <!-- Final order recap -->
+        <div class="final-summary">
+          <div class="fs-title">Order Summary</div>
+          <div class="fs-row"><span>Customer</span><span id="fs-name">—</span></div>
+          <div class="fs-row"><span>Phone</span><span id="fs-phone">—</span></div>
+          <div class="fs-row"><span>Product</span><span id="fs-product">—</span></div>
+          <div class="fs-row"><span>Color</span><span id="fs-color">—</span></div>
+          <div class="fs-row"><span>Qty</span><span id="fs-qty">—</span></div>
+          <div class="fs-row total-row"><span>Total Paid</span><span id="fs-total">—</span></div>
+        </div>
+
+        <div id="submitLoader" style="display:none;" class="loader-row">
+          <div class="spinner"></div> <span>Sending your order to our team…</span>
+        </div>
+
+        <div id="step3Error" class="form-error" style="display:none;"></div>
+
+        <div class="modal-btn-row">
+          <button type="button" class="btn btn-ghost" onclick="backToStep2()">← Back</button>
+          <button type="button" class="btn btn-primary btn-confirm" style="flex:1;" id="confirmBtn" onclick="confirmOrder()">
+            ✓ Confirm Order
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       STEP 4 — SUCCESS MODAL
+       ════════════════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="successOverlay">
+    <div class="modal modal-success">
+      <div class="success-icon-wrap">
+        <div class="success-ring"></div>
+        <div class="success-icon">✓</div>
+      </div>
+      <h2 class="success-title">Order Confirmed! 🎉</h2>
+      <p class="success-msg">Your order is placed and our team has been notified. We'll contact you within 1–2 hours to confirm your delivery.</p>
+      <div class="success-order-box" id="successBox"></div>
+      <div class="success-perks">
+        <div class="success-perk">📦 Free delivery to your address</div>
+        <div class="success-perk">📞 Confirmation call within 2 hours</div>
+        <div class="success-perk">🛡️ 1-year warranty included</div>
+      </div>
+      <button class="btn btn-primary w100" onclick="closeAllModals()">Continue Shopping</button>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
